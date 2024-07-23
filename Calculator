@@ -1,0 +1,56 @@
+import sys
+
+
+class Calculator:
+    def __init__(self):
+        self.number1 = None
+        self.number2 = None
+
+    def main(self):
+        while True:
+            print("\nWould you like to:")
+            print("1. Addition")
+            print("2. Subtraction")
+            print("3. Multiplication")
+            print("4. Division")
+            print("5. Exit")
+            choice = input("Enter your choice: ")
+
+            if choice in ['1', '2', '3', '4']:
+                self.number1 = int(input("Enter first number: "))
+                self.number2 = int(input("Enter second number: "))
+
+            if choice == "1":
+                result = lambda number1, number2: self.number1 + self.number2
+                print("Result:", result(self.number1, self.number2))
+            elif choice == "2":
+                result = lambda number1, number2: self.number1 - self.number2
+                print("Result:", result(self.number1, self.number2))
+            elif choice == "3":
+                result = lambda number1, number2: self.number1 * self.number2
+                print("Result:", result(self.number1, self.number2))
+            elif choice == "4":
+                if self.number2 != 0:
+                    result = lambda number1, number2: self.number1 / self.number2
+                    print("Result:", result(self.number1, self.number2))
+                else:
+                    print("Error: Division by zero is not allowed.")
+            elif choice == "5":
+                print("Exiting the program.")
+                sys.exit(0)
+            else:
+                print("Invalid choice. Please try again.")
+                continue
+
+            print("\nWould you like to try again?")
+            print("1. Yes")
+            print("2. No")
+            retry_choice = input("Enter your choice: ")
+            if retry_choice != "1":
+                print("Exiting the program.")
+                sys.exit(0)
+
+
+if __name__ == "__main__":
+    calc = Calculator()
+    calc.main()
