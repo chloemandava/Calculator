@@ -1,0 +1,62 @@
+import sys
+
+class Calculator:
+    def __init__(self):
+        self.number1 = None
+        self.number2 = None
+
+    def get_numbers(self):
+        self.number1 = int(input("Enter first number: "))
+        self.number2 = int(input("Enter second number: "))
+
+    def add(self):
+        return self.number1 + self.number2
+
+    def subtract(self):
+        return self.number1 - self.number2
+
+    def multiply(self):
+        return self.number1 * self.number2
+
+    def divide(self):
+        if self.number2 != 0:
+            return self.number1 / self.number2
+        else:
+            return "Error: Division by zero is not allowed."
+
+    def main(self):
+        operations = {
+            '1': ('Addition', self.add),
+            '2': ('Subtraction', self.subtract),
+            '3': ('Multiplication', self.multiply),
+            '4': ('Division', self.divide)
+        }
+
+        while True:
+            print("\nWould you like to:")
+            for key, value in operations.items():
+                print(f"{key}. {value[0]}")
+            print("5. Exit")
+
+            choice = input("Enter your choice: ")
+
+            if choice == '5':
+                print("Exiting the program.")
+                sys.exit(0)
+
+            if choice in operations:
+                self.get_numbers()
+                result = operations[choice][1]()
+                print(f"Result: {result}")
+            else:
+                print("Invalid choice. Please try again.")
+                continue
+
+            retry_choice = input("\nWould you like to try again? (1. Yes / 2. No): ")
+            if retry_choice != '1':
+                print("Exiting the program.")
+                sys.exit(0)
+
+if __name__ == "__main__":
+    calc = Calculator()
+    calc.main()
